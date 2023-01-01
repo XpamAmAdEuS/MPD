@@ -37,6 +37,9 @@ CommandResult
 handle_load(Client &client, Request request, Response &response);
 
 CommandResult
+handle_load_custom(Client &client, Request request, Response &response);
+
+CommandResult
 handle_listplaylist(Client &client, Request request, Response &response);
 
 CommandResult

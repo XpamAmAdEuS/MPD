@@ -61,6 +61,8 @@ struct Partition final : QueueListener, PlayerListener, MixerListener {
 
 	const std::string name;
 
+	std::string created;
+
 	const PartitionConfig &config;
 
 	std::unique_ptr<ClientListener> listener;

@@ -140,6 +140,7 @@ handle_status(Client &client, [[maybe_unused]] Request args, Response &r)
 			 COMMAND_STATUS_SINGLE ": {}\n"
 			 COMMAND_STATUS_CONSUME ": {}\n"
 			 "partition: {}\n"
+			 "created: {}\n"
 			 COMMAND_STATUS_PLAYLIST ": {}\n"
 			 COMMAND_STATUS_PLAYLIST_LENGTH ": {}\n"
 			 COMMAND_STATUS_MIXRAMPDB ": {}\n"
@@ -149,6 +150,7 @@ handle_status(Client &client, [[maybe_unused]] Request args, Response &r)
 	      SingleToString(playlist.GetSingle()),
 	      ConsumeToString(playlist.GetConsume()),
 	      partition.name.c_str(),
+	      partition.created.c_str(),
 	      playlist.GetVersion(),
 	      playlist.GetLength(),
 	      pc.GetMixRampDb(),

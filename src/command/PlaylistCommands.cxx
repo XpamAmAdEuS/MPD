@@ -43,7 +43,7 @@
 #include "time/ChronoUtil.hxx"
 #include "util/UriExtract.hxx"
 #include "LocateUri.hxx"
-
+#include <string>
 #include <fmt/format.h>
 
 bool
@@ -127,6 +127,29 @@ handle_load(Client &client, Request args, [[maybe_unused]] Response &r)
 			/* ignore - shall we handle it? */
 		}
 	}
+
+	return CommandResult::OK;
+}
+
+CommandResult
+handle_load_custom(Client &client, Request args, [[maybe_unused]] Response &r)
+{
+	const auto uri = LocateUri(UriPluginKind::PLAYLIST, args.front(),&client);
+
+	std::string created = args.back();
+
+	RangeArg range = RangeArg::All();
+	client.GetPartition().ClearQueue();
+
+	auto &partition = client.GetPartition();
+	auto &playlist = client.GetPlaylist();
+
+	const SongLoader loader(client);
+	playlist_open_into_queue(uri,
+				 range.start, range.end,
+				 playlist,
+				 client.GetPlayerControl(), loader);
+	partition.created = created;
 
 	return CommandResult::OK;
 }
