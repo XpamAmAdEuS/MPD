@@ -52,8 +52,9 @@ LocateFileUri(const char *uri, const Client *client
 	}
 #endif
 
-	if (client != nullptr)
-		client->AllowFile(path);
+	//TODO hack for allowing loading non relative playlists
+//	if (client != nullptr)
+//		client->AllowFile(path);
 
 	return {LocatedUri::Type::PATH, uri, std::move(path)};
 }
